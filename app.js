@@ -4,6 +4,7 @@ import {
   AdminInitiateAuthCommand,
   AdminRespondToAuthChallengeCommand,
   AdminCreateUserCommand,
+  AdminGetUserCommand,
   AdminUpdateUserAttributesCommand,
   CognitoIdentityProviderClient,
   ConfirmForgotPasswordCommand,
@@ -220,6 +221,25 @@ app.post('/resend-email', async (req, res) => {
 
   try {
     const response = await client.send(new AdminCreateUserCommand(params))
+    res.json(response)
+  } catch (error) {
+    console.log("error", error)
+    res.json({
+      message: error.message
+    })
+  }
+})
+
+// API: Get user
+app.post('/get-user', async (req, res) => {
+  const { email } = req.body
+  const params = {
+    UserPoolId: USER_POOL_ID,
+    Username: email
+  }
+
+  try {
+    const response = await client.send(new AdminGetUserCommand(params))
     res.json(response)
   } catch (error) {
     console.log("error", error)
