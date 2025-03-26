@@ -16,8 +16,8 @@ import {
 const app = express()
 const port = 3000
 
-const USER_POOL_ID = 'ap-southeast-1_bJP64hGMB'
-const CLIENT_ID = '318s5l3nmudgk752mcehrd1vju'
+const USER_POOL_ID = '<aws-cognito-user-pool-io>'
+const CLIENT_ID = '<aws-cognito-client-id>'
 const REGION = 'ap-southeast-1'
 const client = new CognitoIdentityProviderClient({ region: REGION })
 
